@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNTERS'SPORTS - Ropa Deportiva Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #000000, #333333);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu a:hover {
+            color: #cccccc;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/><text x="600" y="300" font-family="Arial" font-size="48" fill="%23666" text-anchor="middle" dominant-baseline="middle">Imagen Hero Deportiva</text></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #333333, #000000);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(51, 51, 51, 0.3);
+            background: linear-gradient(45deg, #555555, #222222);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #000000;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #333333, #000000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            height: 250px;
+            background: linear-gradient(45deg, #666666, #333333);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #000000;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333333;
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            background: linear-gradient(45deg, #333333, #000000);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(51, 51, 51, 0.3);
+            background: linear-gradient(45deg, #555555, #222222);
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #333333, #000000);
+            color: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #cccccc;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #cccccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333333;
+            color: #888888;
+        }
+
+        /* Cart */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #333333;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">GUNTERS'SPORTS</div>
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li>
+                        <div class="cart-icon" onclick="toggleCart()">
+                            🛒 <span class="cart-count" id="cart-count">0</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="menu-toggle" id="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>GUNTERS'SPORTS</h1>
+            <p>La mejor ropa deportiva para atletas de élite</p>
+            <a href="#productos" class="cta-button">Ver Productos</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">¿Por qué elegir GUNTERS'SPORTS?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🏃‍♂️</div>
+                    <h3>Alto Rendimiento</h3>
+                    <p>Ropa diseñada específicamente para maximizar tu rendimiento deportivo con materiales de última generación.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Calidad Premium</h3>
+                    <p>Utilizamos solo los mejores materiales y técnicas de confección para garantizar durabilidad y comodidad.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Diseño Exclusivo</h3>
+                    <p>Nuestros diseños únicos te harán destacar tanto en el gimnasio como en la calle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre GUNTERS'SPORTS</h2>
+                    <p>Somos una marca comprometida con la excelencia en ropa deportiva. Desde nuestros inicios, hemos trabajado incansablemente para crear prendas que no solo se vean increíbles, sino que también mejoren tu rendimiento deportivo.</p>
+                    <p>Nuestra misión es empoderar a cada atleta, desde principiantes hasta profesionales, con la mejor indumentaria deportiva del mercado.</p>
+                    <a href="#contacto" class="cta-button">Contáctanos</a>
+                </div>
+                <div class="about-image">
+                    <span>Imagen de nuestro equipo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>GUNTERS'SPORTS</h3>
+                    <p>Tu tienda de confianza para ropa deportiva de calidad premium.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li>📧 info@gunterssports.com</li>
+                        <li>📱 +51 999 888 777</li>
+                        <li>📍 Lima, Perú</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Síguenos</h3>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GUNTERS'SPORTS. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Products data
+        const products = [
+            {
+                id: 1,
+                name: "Camiseta Performance Pro",
+                price: 89.99,
+                image: "Camiseta Deportiva",
+                category: "camisetas"
+            },
+            {
+                id: 2,
+                name: "Short Running Elite",
+                price: 65.99,
+                image: "Short Deportivo",
+                category: "shorts"
+            },
+            {
+                id: 3,
+                name: "Sudadera Training Max",
+                price: 129.99,
+                image: "Sudadera Deportiva",
+                category: "sudaderas"
+            },
+            {
+                id: 4,
+                name: "Leggings Flex Woman",
+                price: 79.99,
+                image: "Leggings Deportivos",
+                category: "leggings"
+            },
+            {
+                id: 5,
+                name: "Polo Fitness Classic",
+                price: 59.99,
+                image: "Polo Deportivo",
+                category: "polos"
+            },
+            {
+                id: 6,
+                name: "Chaqueta Wind Resistant",
+                price: 159.99,
+                image: "Chaqueta Deportiva",
+                category: "chaquetas"
+            }
+        ];
+
+        // Cart functionality
+        let cart = [];
+        let cartCount = 0;
+
+        // Load products
+        function loadProducts() {
+            const productsGrid = document.getElementById('products-grid');
+            productsGrid.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">${product.image}</div>
+                    <div class="product-info">
+                        <div class="product-title">${product.name}</div>
+                        <div class="product-price">S/ ${product.price}</div>
+                        <button class="add-to-cart" onclick="addToCart(${product.id})">
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Add to cart function
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                cart.push(product);
+                cartCount++;
+                updateCartCount();
+                showNotification(`${product.name} agregado al carrito`);
+            }
+        }
+
+        // Update cart count
+        function updateCartCount() {
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        // Toggle cart (placeholder function)
+        function toggleCart() {
+            alert(`Tienes ${cartCount} productos en tu carrito.\n\nTotal: S/ ${cart.reduce((total, item) => total + item.price, 0).toFixed(2)}`);
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Simple notification (you can enhance this)
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: #333333;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                z-index: 1001;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Header scroll effect
+        function handleScroll() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            const menuToggle = document.getElementById('menu-toggle');
+            
+            navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Smooth scrolling
+        function smoothScroll(target) {
+            document.querySelector(target).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            
+            // Header scroll effect
+            window.addEventListener('scroll', handleScroll);
+            
+            // Mobile menu toggle
+            document.getElementById('menu-toggle').addEventListener('click', toggleMobileMenu);
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href');
+                    smoothScroll(target);
+                    
+                    // Close mobile menu if open
+                    document.getElementById('nav-menu').classList.remove('active');
+                });
+            });
+        });
+
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
