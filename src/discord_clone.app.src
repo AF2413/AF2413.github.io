@@ -1,0 +1,15 @@
+{application, discord_clone,
+ [{description, "A Discord-like application in Erlang"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, { discord_clone_app, []}}, % Specifies the application callback module
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, [discord_server, discord_user, discord_channel, discord_message, discord_clone_app, discord_clone_sup]}, % List all modules
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
